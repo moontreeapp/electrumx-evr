@@ -255,6 +255,7 @@ class Evrmore(Coin):
 
         print(height)
         print(nNonce64)
+        print(header_hash)
         print(mix_hash)
         print(m)
         assert m == mix_hash
