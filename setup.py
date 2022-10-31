@@ -7,7 +7,7 @@ version = electrumx.version.rsplit(' ', maxsplit=1)[-1]
 with open('requirements.txt', 'r') as f:
     requirements = f.read().splitlines()
 
-requirements = [i for i in requirements if "kawpow" not in i]
+#requirements = [i for i in requirements if "kawpow" not in i]
 
 setuptools.setup(
     name='electrumX',
@@ -24,10 +24,9 @@ setuptools.setup(
     author='Neil Booth',
     author_email='kyuupichan@gmail.com',
     license='MIT Licence',
-    url='https://github.com/Electrum-RVN-SIG/electrumx-ravencoin',
+    url='https://github.com/moontreeapp/electrumx-evr',
     long_description='Ravencoin server implementation for the Electrum protocol',
-    download_url=('https://github.com/Electrum-RVN-SIG/electrumx-ravencoin/archive/'
-                  f'{version}.tar.gz'),
+    download_url=('https://github.com/moontreeapp/electrumx-evr/archive/refs/heads/main.zip'),
     classifiers=[
         'Development Status :: 5 - Production/Stable',
         'Framework :: AsyncIO',
