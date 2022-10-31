@@ -239,21 +239,19 @@ class Evrmore(Coin):
     @classmethod
     def header_hash(cls, header):
         '''Given a header return the hash.'''
-        timestamp = util.unpack_le_uint32_from(header, 68)[0]
-
         def reverse_bytes(data):
             b = bytearray(data)
             b.reverse()
             return bytes(b)
 
-        # TODO: Import evrhash
-        import kawpow
+        # TODO: Fix evrhash name
+        import ethash
         nNonce64 = util.unpack_le_uint64_from(header, 80)[0]  # uint64_t
         mix_hash = reverse_bytes(header[88:120])  # uint256
 
         header_hash = reverse_bytes(double_sha256(header[:80]))
 
-        final_hash = reverse_bytes(kawpow.light_verify(header_hash, mix_hash, nNonce64))
+        final_hash = reverse_bytes(ethash.light_verify(header_hash, mix_hash, nNonce64))
         return final_hash
 
 
