@@ -220,7 +220,7 @@ class Evrmore(Coin):
     NET = "mainnet"
     XPUB_VERBYTES = bytes.fromhex("0488B21E")
     XPRV_VERBYTES = bytes.fromhex("0488ADE4")
-    P2PKH_VERBYTE = [b'\x33']
+    P2PKH_VERBYTES = [b'\x33']
     P2SH_VERBYTES = [b'\x92']
     GENESIS_HASH = ('00'*32)
     DEFAULT_MAX_SEND = 10_000_000
@@ -259,7 +259,7 @@ class EvrmoreTestnet(Evrmore):
     NET = "testnet"
     XPUB_VERBYTES = bytes.fromhex("043587CF")
     XPRV_VERBYTES = bytes.fromhex("04358394")
-    P2PKH_VERBYTE = [bytes.fromhex("6F")]
+    P2PKH_VERBYTE = bytes.fromhex("6F")
     P2SH_VERBYTES = [bytes.fromhex("C4")]
     WIF_BYTE = bytes.fromhex("EF")
     GENESIS_HASH = ('0000007b11d0481b2420a7c656ef76775d54ab5b29ee7ea250bc768535693b05')
