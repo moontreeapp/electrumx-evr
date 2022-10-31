@@ -258,7 +258,10 @@ class Evrmore(Coin):
         print(header_hash)
         print(mix_hash)
         print(m)
-        assert m == mix_hash
+        if height > 0:
+            assert m == mix_hash
+        else:
+            assert mix_hash == b'\0' * 32
 
         print(f)
         raise Exception()
