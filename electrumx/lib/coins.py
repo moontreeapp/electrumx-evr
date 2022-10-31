@@ -249,22 +249,22 @@ class Evrmore(Coin):
         height = util.unpack_le_uint32_from(header, 76)[0]   # uint32_t
         nNonce64 = util.unpack_le_uint64_from(header, 80)[0]  # uint64_t
         mix_hash = header[88:120]  # uint256
-        header_hash = reverse_bytes(double_sha256(header[:80]))
+        header_hash = double_sha256(header[:80])
 
         f, m = ethash.hash(height//12000, header_hash, nNonce64)
 
         print(height)
         print(nNonce64)
-        print(header_hash)
-        print(mix_hash)
-        print(m)
+        print(header_hash.hex())
+        print(mix_hash.hex())
+        print(m.hex())
         if height > 0:
             assert m == mix_hash
+            print(f.hex())
+            raise Exception()
         else:
             assert mix_hash == b'\0' * 32
 
-        print(f)
-        raise Exception()
         return f
 
 
