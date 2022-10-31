@@ -253,6 +253,8 @@ class Evrmore(Coin):
 
         f, m = ethash.hash(height//12000, header_hash, nNonce64)
 
+        print(height)
+        print(nNonce64)
         print(mix_hash)
         print(m)
         assert m == mix_hash
