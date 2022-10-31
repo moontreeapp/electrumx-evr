@@ -244,28 +244,14 @@ class Evrmore(Coin):
             b.reverse()
             return bytes(b)
 
-        # TODO: Fix evrhash name
-        import ethash
-        height = util.unpack_le_uint32_from(header, 76)[0]   # uint32_t
+        import evrhash
         nNonce64 = util.unpack_le_uint64_from(header, 80)[0]  # uint64_t
-        mix_hash = header[88:120]  # uint256
-        header_hash = double_sha256(header[:80])
+        mix_hash = reverse_bytes(header[88:120])  # uint256
 
-        f, m = ethash.hash(height//12000, header_hash, nNonce64)
+        header_hash = reverse_bytes(double_sha256(header[:80]))
 
-        print(height)
-        print(nNonce64)
-        print(header_hash.hex())
-        print(mix_hash.hex())
-        print(m.hex())
-        if height > 0:
-            assert m == mix_hash
-            print(f.hex())
-            raise Exception()
-        else:
-            assert mix_hash == b'\0' * 32
-
-        return f
+        final_hash = reverse_bytes(evrhash.light_verify(header_hash, mix_hash, nNonce64))
+        return final_hash
 
 
 class EvrmoreTestnet(Evrmore):
