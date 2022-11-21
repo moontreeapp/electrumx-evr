@@ -266,6 +266,7 @@ class EvrmoreTestnet(Evrmore):
     CHAIN_SIZE = 0
     CHAIN_SIZE_HEIGHT = 0
     AVG_BLOCK_SIZE = 294
+    BASIC_HEADER_SIZE = 80
 
     RPC_PORT = 18819
     REORG_LIMIT = 60
