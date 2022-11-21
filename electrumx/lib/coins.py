@@ -271,3 +271,7 @@ class EvrmoreTestnet(Evrmore):
     REORG_LIMIT = 60
     PEERS = [
     ]
+
+    @classmethod
+    def header_hash(cls, header):
+        return double_sha256(header)
