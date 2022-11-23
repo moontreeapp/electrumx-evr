@@ -777,7 +777,11 @@ class DB:
 
         keys = []
         for key, _hist in self.asset_info_db.iterator(prefix=prefix):
-            height, = unpack_be_uint32(key[-4:])
+            try:
+                height, = unpack_be_uint32(key[-4:])
+            except Exception as e:
+                print(key)
+                raise e
             if height >= min_height:
                 break
             keys.append(key)
