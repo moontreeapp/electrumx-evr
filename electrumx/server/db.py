@@ -911,6 +911,7 @@ class DB:
             assets = []
             assets_append = assets.append
             prefix = b'u' + hashX
+            print(f'assets for: {hashX.hex()}')
             for db_key, db_value in self.asset_db.iterator(prefix=prefix):
                 tx_pos, = unpack_le_uint32(db_key[-9:-5])
                 tx_num, = unpack_le_uint64(db_key[-5:] + bytes(3))
@@ -918,6 +919,7 @@ class DB:
                 value, = unpack_le_uint64(db_value[:8])
                 name = db_value[9:].decode('ascii')
                 assets_append(ASSET(tx_num, tx_pos, tx_hash, height, name, value))
+            print(assets)
             return assets
 
         while True:
