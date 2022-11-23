@@ -439,7 +439,6 @@ class DB:
                 hashX = value[:HASHX_LEN]
                 suffix = key[-4:] + value[HASHX_LEN:5+HASHX_LEN]
                 batch_put(b'h' + key[:4] + suffix, hashX)
-                print(f'asset {value} for {hashX.hex()}')
                 batch_put(b'u' + hashX + suffix, value[5+HASHX_LEN:])
             flush_data.asset_adds.clear()
 

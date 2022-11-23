@@ -923,8 +923,8 @@ class BlockProcessor:
                     # Now try and add asset info
                     def try_parse_asset(asset_deserializer: DataParser, second_loop=False):
                         op = asset_deserializer.read_bytes(3)
-                        if op != b'rvn':
-                            raise Exception("Expected {}, was {}".format(b'rvn', op))
+                        if op != b'evr':
+                            raise Exception("Expected {}, was {}".format(b'evr', op))
                         script_type = asset_deserializer.read_byte()
                         asset_name_len, asset_name = asset_deserializer.read_var_bytes_tuple_bytes()
                         if asset_name[0] == b'$'[0]:
@@ -1148,9 +1148,9 @@ class BlockProcessor:
 
                     # function for malformed asset
                     def try_parse_asset_iterative(script: bytes):
-                        while script[:3] != b'rvn' and len(script) > 0:
+                        while script[:3] != b'evr' and len(script) > 0:
                             script = script[1:]
-                        assert script[:3] == b'rvn'
+                        assert script[:3] == b'evr'
                         return try_parse_asset(DataParser(script), True)
 
                     # Me @ core devs
